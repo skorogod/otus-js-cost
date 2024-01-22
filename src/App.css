@@ -1,0 +1,25 @@
+*  {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header {
+    background-color: #009999;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    height: 50px;
+    padding: 5px 10px;
+} 
+
+main {
+    margin-top: 50px;
+}
+
+.container {
+    max-width: 1240px;
+    margin: 0 auto;
+}

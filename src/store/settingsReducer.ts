@@ -1,29 +1,17 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { insertCategory } from "../../firebase/methods/insertCategory";
-import { buildCreateSlice, asyncThunkCreator } from '@reduxjs/toolkit'
 import { createAppSlice } from "./thunk/thunk";
 import { getCategories } from "../../firebase/methods/getCategories";
+import { insertSubcategory } from "../../firebase/methods/insertSubcategory";
+import type { insertSubCategoryParams } from "../../firebase/methods/insertSubcategory";
+import type { insertCategoryParams } from "../../firebase/methods/insertCategory";
+import { SettingsState} from "./types";
 
-
-export type SettingsState = {
-    loading: boolean,
-    categories: Category[]
-}
 
 const initialState: SettingsState = {
     loading: false,
-    categories: []
+    categories: {}
 }
 
-type insertCategoryParams = {
-    categoryName: string,
-    userId: string;
-};
-
-export type Category = {
-    name: string, 
-    subcategories: Omit<Category, "subcategories">[]
-}
 
 export const settingsSlice = createAppSlice({
     name: "settings",
@@ -33,13 +21,16 @@ export const settingsSlice = createAppSlice({
             async (userId) => {
                 try{
                     const categories = await getCategories(userId);
-                    console.log(categories)
                     return {
-                        categories: categories
+                        categories: categories,
                     }
                 }
                 catch (err) { 
                     alert(err);
+                }
+
+                return {
+                    categories: {}
                 }
             },
             {
@@ -58,10 +49,11 @@ export const settingsSlice = createAppSlice({
         addCategory: create.asyncThunk(
             async (params: insertCategoryParams, { dispatch }) => {
                 try {
-                    await insertCategory(params.categoryName, params.userId);
+                    const subCategoryid = await insertCategory(params.categoryName, params.userId);
                     return {
+                        subCategoryid,
                         name: params.categoryName,
-                        subcategories: []
+                        subCategories: {}
                     };
                 }
                 catch (err) {
@@ -77,15 +69,50 @@ export const settingsSlice = createAppSlice({
                 },
                 fulfilled: (state, action) => {
                     state.loading = false;
-                    state.categories.push({
+                    state.categories[action.payload!.subCategoryid] = {
+                        id: action.payload!.subCategoryid,
                         name: action.payload!.name,
-                        subcategories: action.payload!.subcategories
-                    })
+                        dates: {},
+                        subCategories: action.payload!.subCategories
+                    }
                 }
+            }
+        ),
+        addSubCategory: create.asyncThunk(
+            async (params: insertSubCategoryParams) => {
+                try {
+                    const id = await insertSubcategory(params);
+                    return {
+                        id,
+                        name: params.subCategoryName,
+                        categoryId: params.categoryId
+                    }
+                }
+
+                catch (err) {
+                    alert("add SubCategory error")
+                }
+            },
+            {
+                pending: (state) => {
+                    state.loading = true;
+                },
+                rejected: (state, action) => {
+                    state.loading = false;
+                },
+                fulfilled: (state, action) => {
+                    state.categories[action.payload!.categoryId]["subCategories"][action.payload!.id] = {
+                        id: action.payload!.id,
+                        name: action.payload!.name,
+                        dates: {}
+                    }
+                    state.loading = false;
+                }
+                    
             }
         )
     })
 })
 
-export const { addCategory, fetchCategories } = settingsSlice.actions
+export const { addCategory, fetchCategories, addSubCategory } = settingsSlice.actions
 export const settingsReducer  = settingsSlice.reducer

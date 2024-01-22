@@ -21,19 +21,15 @@ import {
     getAuth,
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
-    sendPasswordResetEmail,
     signOut,
 } from "firebase/auth";
 
-
 import {
     getFirestore,
-    query,
-    getDocs,
-    collection,
-    where,
     addDoc,
-} from "firebase/firestore";
+    collection
+} from "firebase/firestore"
+
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);

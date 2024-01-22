@@ -16,7 +16,9 @@ export function Login() {
       return;
     }
 
-    if (user) history.push("/dashboard");
+    if (user) {
+        history.push("/dashboard");
+    }
   }, [user, loading]);
 
   return (

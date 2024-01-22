@@ -1,18 +1,25 @@
-import { query, collection, where, getDocs, updateDoc, doc, arrayUnion } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import { getUser } from "./getUser";
+
+
+export type insertCategoryParams = {
+    categoryName: string,
+    userId: string;
+};
 
 export const insertCategory = async (categoryName: string, userId: string) => {
-    const q = query(collection(db, "users"), where("uuid", "==", userId))
-    const data = await getDocs(q);
+    const userRef = await getUser(userId);
 
-    if (data.docs) {
-        const userRef = data.docs[0];
-        const docRef = await updateDoc(doc(db, "users", userRef.id), {
-            categories: arrayUnion(
-                {
-                    name: categoryName
-                }
-            )
+    if (userRef) {
+        const docRef = await addDoc(collection(db, "users", `${userRef.id}`, "categories"), {
+            name: categoryName,
         })
+
+        return docRef.id;
+    }
+
+    else {
+        throw new Error ("Category Add Error")
     }
 }
