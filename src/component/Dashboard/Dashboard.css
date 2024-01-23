@@ -1,0 +1,30 @@
+
+.dashboard {
+  display: flex;
+  flex-flow: column;
+}
+
+.dashboard__container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.dashboard__date {
+  align-self: flex-end;
+}
+
+.dashboard__statistics {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.dashboard__btn {
+  padding: 10px;
+  font-size: 18px;
+  margin-top: 10px;
+  border: none;
+  color: white;
+  background-color: black;
+}

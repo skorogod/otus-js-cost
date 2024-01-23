@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { auth, loginWithEmailAndPassword } from "../../firebase/firebase";
+import { auth, loginWithEmailAndPassword } from "../../../firebase/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 import "./Login.css";
@@ -17,7 +17,7 @@ export function Login() {
     }
 
     if (user) {
-        history.push("/dashboard");
+      history.push("/dashboard");
     }
   }, [user, loading]);
 

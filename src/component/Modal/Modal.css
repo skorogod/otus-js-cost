@@ -1,0 +1,22 @@
+.modal {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    top: 30px;
+    background-color: rgba(115, 151, 212, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+}
+
+.fieldset {
+    display: flex;
+    flex-flow: column;
+    row-gap: 20px;
+    border: none;
+}
+
+.date {
+    margin-top: 10px;
+}

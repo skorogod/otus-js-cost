@@ -14,6 +14,7 @@ export const insertCategory = async (categoryName: string, userId: string) => {
     if (userRef) {
         const docRef = await addDoc(collection(db, "users", `${userRef.id}`, "categories"), {
             name: categoryName,
+            dates: {}
         })
 
         return docRef.id;

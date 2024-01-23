@@ -2,7 +2,15 @@ import React, {
   FC,
 } from "react";
 import ReactDOM from "react";
-import { Category, SubCategory } from "../store/types";
+import { Category, SubCategory } from "../../store/types";
+
+
+interface CategoryElProps extends Omit<Category, "dates"> {
+  onCategoryChecked?: Function;
+  onSubcategoryChecked?: Function;
+  visible: boolean;
+}
+
 
 const getSubCategorySelect = (
   categoryId: string,
@@ -10,14 +18,14 @@ const getSubCategorySelect = (
   onOptionChecked?: Function
 ) => {
   return subCategories ? (
-    <select onChange={(event) => {
+    <select onChange={() => {
         if(onOptionChecked){
             const el = document.getElementById(`sub-${categoryId}`) as HTMLInputElement
             onOptionChecked(el.value)
         }
             
     }} name="subCategory" id={`sub-${categoryId}`}>
-      <option value="">--Please choose subcategory--</option>
+      <option value="">--choose subcategory--</option>
       {subCategories.map((sub: SubCategory) => {
         return (
           <option  key={sub.id} value={sub.id}>
@@ -29,13 +37,8 @@ const getSubCategorySelect = (
   ) : null;
 };
 
-interface CategoryElProps extends Omit<Category, "dates"> {
-  onCategoryChecked?: Function;
-  onSubcategoryChecked?: Function;
-  visible: boolean;
-}
 
-export const CategoryEl: FC<CategoryElProps> = (props: CategoryElProps) => {
+export const CategoryComponent: FC<CategoryElProps> = (props: CategoryElProps) => {
   return (
     <div className="category">
       <input

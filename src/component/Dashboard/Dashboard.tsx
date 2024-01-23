@@ -1,20 +1,16 @@
 import React, { FC, useEffect, useState } from "react";
-import { auth, db, logOut } from "../../firebase/firebase";
+import { auth, db, logOut } from "../../../firebase/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useHistory } from "react-router-dom";
-import { query, collection, getDocs, where } from "firebase/firestore";
-import { Pie } from "react-chartjs-2";
 
 import "./Dashboard.css";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../store";
-import {
-  fetchCategories,
-} from "../store/settingsReducer";
+import { RootState } from "../../store";
+import { fetchCategories } from "../../store/settingsReducer";
 
-import { Modal } from "./Modal";
-import { getDateFormated } from "../modules/getDate";
-import { ChartComponent } from "./Chart";
+import { Modal } from "../Modal/Modal";
+import { getDateFormated } from "../../modules/getDate";
+import { Statistics } from "../Statistics/Statistics";
 
 const modalAddSubcategory = (innerHTML: string, classList: string[]) => {
   const modal = document.getElementById("modal");
@@ -24,13 +20,15 @@ const modalAddSubcategory = (innerHTML: string, classList: string[]) => {
   modal?.insertAdjacentElement("afterbegin", modalSubcategory);
 };
 
-export const Dashboard:FC = () => {
+export const Dashboard: FC = () => {
   const [user, authLoading, error] = useAuthState(auth);
-  const [modalVisible, setModalVisible] = useState(false)
+  const [modalVisible, setModalVisible] = useState(false);
   const [date, setDate] = useState(getDateFormated());
+
   const categories = useSelector(
     (state: RootState) => state.settings.categories
   );
+
   const loading = useSelector((state: RootState) => state.settings.loading);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -44,24 +42,25 @@ export const Dashboard:FC = () => {
 
   return (
     <div className="dashboard">
-      <p className="current-date">Today: {date}</p>
+      <p className="dashboard__date">Today: {date}</p>
       <div className="dashboard__container">
-        <div className="container__costs costs">
-          <div className="costs__info"></div>
-          <div className="costs__graphics">
-            <ChartComponent data={categories}></ChartComponent>
-          </div>
-          <div className="costs__add add">
-            <button className="button btn-primary" onClick={() => {setModalVisible(!modalVisible)}}>Add Cost</button>
-            {modalVisible && <Modal></Modal>}
+        <div className="dashboard__container">
+          <div className="container__statistics">
+            <h2 className="statistics__header">Стастистика расходов</h2>
+            <div className="statistics__add add">
+              <button
+                className="button btn-primary"
+                onClick={() => {
+                  setModalVisible(!modalVisible);
+                }}
+              >
+                Add Cost
+              </button>
+              {modalVisible && <Modal></Modal>}
+            </div>
+            <Statistics></Statistics>
           </div>
         </div>
-        
-        <ul>
-          {Object.values(categories).map((el) => {
-            return <li key={el.id}>{el.name}</li>;
-          })}
-        </ul>
       </div>
     </div>
   );
