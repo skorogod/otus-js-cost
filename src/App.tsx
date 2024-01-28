@@ -12,7 +12,7 @@ import { Login } from "./component/Login/Login";
 import { Register } from "./component/Register/Register";
 import { Dashboard } from "./component/Dashboard/Dashboard";
 import { logOut } from "../firebase/firebase";
-import { Settings } from "./component/Settings/Settings";
+import { CategoriesComponent } from "./component/Categories/Categories";
 import { Provider } from "react-redux";
 import { store } from "./store";
 
@@ -30,10 +30,10 @@ export const App = () => {
               {user ? (
                 <ul className="nav__list list">
                   <li>
-                    <Link to="/dashboard">Settings</Link>
+                    <Link to="/dashboard">Dashboard</Link>
                   </li>
                   <li>
-                    <Link to="/settings">Dashboard</Link>
+                    <Link to="/categories">Categories</Link>
                   </li>
                 </ul>
               ) : (
@@ -42,7 +42,7 @@ export const App = () => {
               <ul className="nav__login nav__list">
                 <li>
                   {user ? (
-                    <button onClick={logOut}>Logout</button>
+                    <a href='' onClick={logOut}>Logout</a>
                   ) : (
                     <a href="/login">Login</a>
                   )}
@@ -56,7 +56,7 @@ export const App = () => {
                 <Route exact path="/" component={Login}></Route>
                 <Route exact path="/register" component={Register}></Route>
                 <Route exact path="/dashboard" component={Dashboard}></Route>
-                <Route exact path="/settings" component={Settings}></Route>
+                <Route exact path="/categories" component={CategoriesComponent}></Route>
               </Switch>
             </section>
           </main>

@@ -3,10 +3,12 @@ import type { BaseState } from ".";
 export interface SettingsState extends BaseState  {
 }
 
+export type Dates = {[key: string]: {total: number}}
+
 export type Category = {
     id: string,
     name: string,
-    dates: {[key: string]: {total: number}}
+    dates: Dates;
     subCategories: {[key: string]: SubCategory};
 }
 

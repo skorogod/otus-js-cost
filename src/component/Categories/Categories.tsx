@@ -10,7 +10,9 @@ import { fetchCategories } from "../../store/settingsReducer";
 import { Category, SubCategory } from "../../store/types";
 import { addSubCategory, addCategory } from "../../store/settingsReducer";
 
-export const Settings = () => {
+import "./Categories.css"
+
+export const CategoriesComponent = () => {
   const [user, loadingAuth, error] = useAuthState(auth);
   const categories = useSelector(
     (state: RootState) => state.settings.categories
@@ -28,9 +30,27 @@ export const Settings = () => {
   }, [user]);
 
   return (
-    <div>
+    <div className="categories__container">
+      <h2 className="categories__header">Categories List</h2>
+      <div className="categories__add">
+        <input type="text" name="category" />
+        <button
+          onClick={() => {
+            const name = document.querySelector(
+              "[name='category']"
+            ) as HTMLInputElement;
+            if (name.value) {
+              dispatch<any>(
+                addCategory({ categoryName: name.value, userId: user!.uid })
+              );
+            }
+          }}
+        >
+          Add Category
+        </button>
+      </div>
       {Object.values(categories).length > 0 ? (
-        <ul className="categories">
+        <ul className="categories__list">
           {Object.values(categories).map((el: Category) => {
             return (
               <li>
@@ -56,7 +76,7 @@ export const Settings = () => {
                     Add sub
                   </button>
                   {el.subCategories ? (
-                    <ul className="subCategories">
+                    <ul className="subCategories__list">
                       {Object.values(el.subCategories).map(
                         (el: SubCategory) => (
                           <li key={el.id}>{el.name}</li>
@@ -74,21 +94,6 @@ export const Settings = () => {
       ) : (
         <p>Категории отсутсвуют</p>
       )}
-      <input type="text" name="category" />
-      <button
-        onClick={() => {
-          const name = document.querySelector(
-            "[name='category']"
-          ) as HTMLInputElement;
-          if (name.value) {
-            dispatch<any>(
-              addCategory({ categoryName: name.value, userId: user!.uid })
-            );
-          }
-        }}
-      >
-        Add Category
-      </button>
     </div>
   );
 };

@@ -40,12 +40,13 @@ export function Login() {
         />
         <button
           className="login__btn"
+          role="button"
           onClick={() => loginWithEmailAndPassword(email, password)}
         >
           Login
         </button>
         <div>
-          Dont have account <Link to={"/register"}>Register</Link> now
+          Dont have account <Link to={"/register"} className="register-link">Register</Link> now
         </div>
       </div>
     </div>

@@ -6,7 +6,8 @@ import { RootState } from "../../store";
 import DatePicker from "react-datepicker";
 import { ChartComponent } from "../Chart/Chart";
 import { Table } from "../Table/Table";
-import { Categories } from "../../store/types";
+import { Categories, CostDate } from "../../store/types";
+import type { Dates } from "../../store/types";
 
 import "./Statistics.css";
 
@@ -16,24 +17,49 @@ type StatisticsData = {
   data: Categories;
 };
 
-const prepareData = (statData: StatisticsData) => {
-  return Object.values(statData.data).map((el) => ({
-    name: el.name,
-    count: Object.entries(el.dates)
-      .map((entrie) => {
-        if (
-          (!statData.fromDate ||
-            Number(entrie[0]) >= statData.fromDate.getTime()) &&
-          (!statData.toDate || Number(entrie[0]) <= statData.toDate.getTime())
-        ) {
-          return entrie[1].total;
-        } else {
-          return 0;
-        }
-      })
-      .reduce((prev, curr) => prev + curr, 0),
-  }));
-};
+function getFieldValues(object: {[key: string | symbol]: any}, fieldName: string) {
+	let dates: Dates[] = []
+
+	getProp(object, fieldName)
+
+	function getProp(object: {[key: string | symbol]: any}, fieldName: string) {
+		for (let field in object) {
+			if (typeof object[field] === 'object' && Object.values(object[field]).length > 0) {
+				if (field === fieldName) {
+					console.log(object[field])
+					dates.push({...object[field]})
+				}
+				else {
+					getProp(object[field], fieldName);
+				}
+			}
+		}
+	}
+	console.log(dates)
+	return dates
+}
+
+const prepare = (statData: StatisticsData) =>  {
+	return Object.entries(statData.data).map(
+		(item) => {
+			return {
+				id: item[1].id,
+				name: item[1].name,
+				count: getFieldValues(item[1], "dates").map(el => {
+					if (
+						(!statData.fromDate ||
+						  Number(Object.keys(el)[0]) >= statData.fromDate.getTime()) &&
+						(!statData.toDate || Number(Object.keys(el)[0]) <= statData.toDate.getTime())
+					  ) {
+						return Object.values(el)[0].total;
+					  } else {
+						return 0;
+					  }
+				}).reduce((p, c) => p + c, 0)
+			
+		}}
+	)
+}
 
 export const Statistics: FC = (props) => {
   const categories = useSelector(
@@ -43,13 +69,16 @@ export const Statistics: FC = (props) => {
   const [fromDate, setFromDate] = useState<null | Date>(null);
   const [toDate, setToDate] = useState<null | Date>(null);
 
-  const statisticsData = category
-    ? prepareData({
-        data: categories[category].subCategories,
-        fromDate,
-        toDate,
-      })
-    : prepareData({ data: categories, fromDate, toDate });
+ 
+
+	const statisticsData = category
+	  ? prepare({
+		  data: categories[category].subCategories,
+		  fromDate,
+		  toDate,
+		})
+	  : prepare({ data: categories, fromDate, toDate });
+
 
   return (
     <div className="statistics">
@@ -72,7 +101,7 @@ export const Statistics: FC = (props) => {
           <DatePicker
             dateFormat="dd-MM-yyyy"
             selected={fromDate}
-            onChange={(dates) => {
+            onChange={(dates: any) => {
               const [start, end] = dates;
               setFromDate(start);
               setToDate(end);
@@ -86,10 +115,10 @@ export const Statistics: FC = (props) => {
       </div>
       <div className="statistics__info info">
         <div className="info__graphics">
-          <ChartComponent data={statisticsData}></ChartComponent>
+          { statisticsData ? <ChartComponent data={statisticsData}></ChartComponent> : '' }
         </div>
         <div className="info__table">
-          <Table data={statisticsData}></Table>
+          { statisticsData ? <Table data={statisticsData}></Table> : '' }
         </div>
       </div>
     </div>

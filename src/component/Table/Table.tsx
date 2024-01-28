@@ -7,7 +7,7 @@ import { Categories } from "../../store/types";
 import "./Table.css";
 
 type TableProps = {
-  data: { name: string; count: number }[];
+  data: { id: string, name: string; count: number }[];
 };
 
 export const Table: FC<TableProps> = (props: TableProps) => {

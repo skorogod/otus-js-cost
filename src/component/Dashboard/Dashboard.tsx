@@ -58,7 +58,7 @@ export const Dashboard: FC = () => {
               </button>
               {modalVisible && <Modal></Modal>}
             </div>
-            <Statistics></Statistics>
+            { categories ?  <Statistics></Statistics> : ''}
           </div>
         </div>
       </div>

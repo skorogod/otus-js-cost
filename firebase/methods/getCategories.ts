@@ -7,6 +7,8 @@ import { Category, SubCategory, CostDate } from "../../src/store/types";
 export const getCategories = async (userId: string) => {
         const user = await getUser(userId)
 
+        console.log("USER ", user)
+
         if (user) {
                 const categoriesDocs = await getDocs(query(collection(db, "users", `${user.id}`, "categories")));
 

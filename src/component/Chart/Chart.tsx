@@ -4,6 +4,7 @@ import Chart from "chart.js/auto";
 
 import { CategoryScale } from "chart.js";
 import { Categories, Category, CostDate } from "../../store/types";
+import { Colors } from "chart.js";
 
 
 const CHART_COLORS = {
@@ -17,6 +18,7 @@ const CHART_COLORS = {
 };
 
 Chart.register(CategoryScale);
+Chart.register(Colors)
 
 type ChartProps = {
   data: {name: string, count: number}[]
@@ -35,7 +37,7 @@ export const ChartComponent: FC<ChartProps> = (props: ChartProps) => {
         {
           label: "dataset-1",
           data: props.data.map(el => el.count),
-          backgroundColor: [CHART_COLORS.red, CHART_COLORS.purple],
+          backgroundColor: ["#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7FDBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"]
         },
       ],
     },

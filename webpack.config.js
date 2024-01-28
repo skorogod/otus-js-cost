@@ -14,6 +14,7 @@ module.exports = {
   devServer: {
     open: true,
     host: "localhost",
+    port: 8081,
     hot: true,
     historyApiFallback: true,
   },
@@ -69,5 +70,5 @@ module.exports = {
 
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"]
-  }
+  },
 };

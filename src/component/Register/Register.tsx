@@ -51,7 +51,7 @@ export const Register = () => {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
         />
-        <button className="register__btn" onClick={register}>
+        <button className="register__btn" role="button" onClick={register}>
           Register
         </button>
       </div>
