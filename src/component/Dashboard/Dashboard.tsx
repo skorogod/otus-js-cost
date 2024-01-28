@@ -58,7 +58,21 @@ export const Dashboard: FC = () => {
               </button>
               {modalVisible && <Modal></Modal>}
             </div>
-            {categories ? <Statistics></Statistics> : ""}
+            {Object.values(categories).length > 0 ? (
+              <Statistics></Statistics>
+            ) : (
+              <p
+                style={{
+                  alignSelf: "center",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                }}
+              >
+                {" "}
+                "В настоящее время список категорий пуст. Категории можно
+                добавить во вкладке Categories"
+              </p>
+            )}
           </div>
         </div>
       </div>
