@@ -46,7 +46,11 @@ export function Login() {
           Login
         </button>
         <div>
-          Dont have account <Link to={"/register"} className="register-link">Register</Link> now
+          Dont have account{" "}
+          <Link to={"/register"} className="register-link">
+            Register
+          </Link>{" "}
+          now
         </div>
       </div>
     </div>

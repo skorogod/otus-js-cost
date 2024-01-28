@@ -1,1 +1,29 @@
-{"kind":"identitytoolkit#DownloadAccountResponse","users":[{"localId":"cszfKbPTxIXxXLuCW6ZCeeiO6ELV","lastLoginAt":"1706475538400","displayName":"igor","photoUrl":"","emailVerified":false,"email":"igor@m.ru","salt":"fakeSaltnKIfVLxpSX7Biftex6kf","passwordHash":"fakeHash:salt=fakeSaltnKIfVLxpSX7Biftex6kf:password=12341234","passwordUpdatedAt":1706475538400,"validSince":"1706475538","mfaInfo":[],"createdAt":"1706475538400","providerUserInfo":[{"providerId":"password","email":"igor@m.ru","federatedId":"igor@m.ru","rawId":"igor@m.ru","displayName":"igor","photoUrl":""}]}]}
+{
+  "kind": "identitytoolkit#DownloadAccountResponse",
+  "users": [
+    {
+      "localId": "cszfKbPTxIXxXLuCW6ZCeeiO6ELV",
+      "lastLoginAt": "1706475538400",
+      "displayName": "igor",
+      "photoUrl": "",
+      "emailVerified": false,
+      "email": "igor@m.ru",
+      "salt": "fakeSaltnKIfVLxpSX7Biftex6kf",
+      "passwordHash": "fakeHash:salt=fakeSaltnKIfVLxpSX7Biftex6kf:password=12341234",
+      "passwordUpdatedAt": 1706475538400,
+      "validSince": "1706475538",
+      "mfaInfo": [],
+      "createdAt": "1706475538400",
+      "providerUserInfo": [
+        {
+          "providerId": "password",
+          "email": "igor@m.ru",
+          "federatedId": "igor@m.ru",
+          "rawId": "igor@m.ru",
+          "displayName": "igor",
+          "photoUrl": ""
+        }
+      ]
+    }
+  ]
+}

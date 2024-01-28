@@ -3,7 +3,7 @@
  * https://jestjs.io/docs/configuration
  */
 
-import type {Config} from 'jest';
+import type { Config } from "jest";
 
 const config: Config = {
   // All imported modules in your tests should be mocked automatically
@@ -21,7 +21,7 @@ const config: Config = {
   // Indicates whether the coverage information should be collected while executing the test
   collectCoverage: true,
   moduleNameMapper: {
-    '\\.(css|scss)$': 'identity-obj-proxy'
+    "\\.(css|scss)$": "identity-obj-proxy",
   },
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
@@ -153,7 +153,8 @@ const config: Config = {
 
   // Options that will be passed to the testEnvironment
   testEnvironmentOptions: {
-    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0'
+    userAgent:
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0",
   },
 
   // Adds a location field to test results

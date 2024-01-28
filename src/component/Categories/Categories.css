@@ -1,4 +1,3 @@
-
 .categories__add {
   margin-top: 30px;
 }
@@ -10,12 +9,11 @@
   row-gap: 10px;
 }
 
-
-.categories__list, .subcategories__list {
-    list-style: none;
+.categories__list,
+.subcategories__list {
+  list-style: none;
 }
 
 .categories__list li {
-    margin-top: 20px;
+  margin-top: 20px;
 }
-

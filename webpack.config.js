@@ -8,7 +8,7 @@ module.exports = {
   entry: "./src/index.tsx",
   output: {
     path: path.resolve(__dirname, "dist"),
-    publicPath: '/',
+    publicPath: "/",
   },
 
   devServer: {
@@ -69,6 +69,6 @@ module.exports = {
   },
 
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx"]
+    extensions: [".ts", ".tsx", ".js", ".jsx"],
   },
 };

@@ -1,9 +1,6 @@
-import React, {
-  FC,
-} from "react";
+import React, { FC } from "react";
 import ReactDOM from "react";
 import { Category, SubCategory } from "../../store/types";
-
 
 interface CategoryElProps extends Omit<Category, "dates"> {
   onCategoryChecked?: Function;
@@ -11,24 +8,28 @@ interface CategoryElProps extends Omit<Category, "dates"> {
   visible: boolean;
 }
 
-
 const getSubCategorySelect = (
   categoryId: string,
   subCategories: SubCategory[],
-  onOptionChecked?: Function
+  onOptionChecked?: Function,
 ) => {
   return subCategories ? (
-    <select onChange={() => {
-        if(onOptionChecked){
-            const el = document.getElementById(`sub-${categoryId}`) as HTMLInputElement
-            onOptionChecked(el.value)
+    <select
+      onChange={() => {
+        if (onOptionChecked) {
+          const el = document.getElementById(
+            `sub-${categoryId}`,
+          ) as HTMLInputElement;
+          onOptionChecked(el.value);
         }
-            
-    }} name="subCategory" id={`sub-${categoryId}`}>
+      }}
+      name="subCategory"
+      id={`sub-${categoryId}`}
+    >
       <option value="">--choose subcategory--</option>
       {subCategories.map((sub: SubCategory) => {
         return (
-          <option  key={sub.id} value={sub.id}>
+          <option key={sub.id} value={sub.id}>
             {sub.name}
           </option>
         );
@@ -37,8 +38,9 @@ const getSubCategorySelect = (
   ) : null;
 };
 
-
-export const CategoryComponent: FC<CategoryElProps> = (props: CategoryElProps) => {
+export const CategoryComponent: FC<CategoryElProps> = (
+  props: CategoryElProps,
+) => {
   return (
     <div className="category">
       <input
@@ -52,7 +54,12 @@ export const CategoryComponent: FC<CategoryElProps> = (props: CategoryElProps) =
         }}
       />
       <label htmlFor={`${props.id}`}>{props.name}</label>
-      {props.visible && getSubCategorySelect(props.id, Object.values(props.subCategories), props.onSubcategoryChecked)}
+      {props.visible &&
+        getSubCategorySelect(
+          props.id,
+          Object.values(props.subCategories),
+          props.onSubcategoryChecked,
+        )}
     </div>
   );
 };

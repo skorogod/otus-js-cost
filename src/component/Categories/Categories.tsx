@@ -10,12 +10,12 @@ import { fetchCategories } from "../../store/settingsReducer";
 import { Category, SubCategory } from "../../store/types";
 import { addSubCategory, addCategory } from "../../store/settingsReducer";
 
-import "./Categories.css"
+import "./Categories.css";
 
 export const CategoriesComponent = () => {
   const [user, loadingAuth, error] = useAuthState(auth);
   const categories = useSelector(
-    (state: RootState) => state.settings.categories
+    (state: RootState) => state.settings.categories,
   );
   const loading = useSelector((state: RootState) => state.settings.loading);
   const history = useHistory();
@@ -37,11 +37,11 @@ export const CategoriesComponent = () => {
         <button
           onClick={() => {
             const name = document.querySelector(
-              "[name='category']"
+              "[name='category']",
             ) as HTMLInputElement;
             if (name.value) {
               dispatch<any>(
-                addCategory({ categoryName: name.value, userId: user!.uid })
+                addCategory({ categoryName: name.value, userId: user!.uid }),
               );
             }
           }}
@@ -60,7 +60,7 @@ export const CategoriesComponent = () => {
                   <button
                     onClick={() => {
                       const name = document.getElementById(
-                        `${el.id}`
+                        `${el.id}`,
                       ) as HTMLInputElement;
                       if (name.value) {
                         dispatch<any>(
@@ -68,7 +68,7 @@ export const CategoriesComponent = () => {
                             subCategoryName: name.value,
                             userId: user!.uid,
                             categoryId: el.id,
-                          })
+                          }),
                         );
                       }
                     }}
@@ -80,7 +80,7 @@ export const CategoriesComponent = () => {
                       {Object.values(el.subCategories).map(
                         (el: SubCategory) => (
                           <li key={el.id}>{el.name}</li>
-                        )
+                        ),
                       )}
                     </ul>
                   ) : (

@@ -15,7 +15,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export const Modal: FC = () => {
   const categories = useSelector(
-    (state: RootState) => state.settings.categories
+    (state: RootState) => state.settings.categories,
   );
   const [user, loadingAuth, error] = useAuthState(auth);
   const [count, setCount] = useState<null | number>(null);
@@ -25,7 +25,6 @@ export const Modal: FC = () => {
   const dispatch = useDispatch();
 
   return (
-
     <div className="modal">
       <fieldset className="fieldset">
         <legend>Add new Cost</legend>
@@ -65,7 +64,7 @@ export const Modal: FC = () => {
         placeholder="Please input cost"
         onChange={() => {
           const costInput = document.getElementById(
-            "cost-count"
+            "cost-count",
           ) as HTMLInputElement;
           if (costInput) {
             setCount(Number(costInput.value));
@@ -82,10 +81,10 @@ export const Modal: FC = () => {
                 count,
                 costDate: startDate.setHours(0, 0, 0, 0).toString(),
                 userId: user!.uid,
-              })
+              }),
             );
           }
-          setCount(null)
+          setCount(null);
         }}
       >
         Ok

@@ -5,16 +5,15 @@ import { dashboardReducer } from "./dashboardReducer";
 import { Category } from "./types";
 
 export type BaseState = {
-    loading: boolean;
-    categories: {[key: string]: Category};
-}
+  loading: boolean;
+  categories: { [key: string]: Category };
+};
 
-export type RootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof store.getState>;
 
 export const store = configureStore({
-    reducer: combineReducers({
-        settings: settingsReducer,
-        dashboard: dashboardReducer
-    })
+  reducer: combineReducers({
+    settings: settingsReducer,
+    dashboard: dashboardReducer,
+  }),
 });
-

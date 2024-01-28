@@ -17,68 +17,71 @@ type StatisticsData = {
   data: Categories;
 };
 
-function getFieldValues(object: {[key: string | symbol]: any}, fieldName: string) {
-	let dates: Dates[] = []
+function getFieldValues(
+  object: { [key: string | symbol]: any },
+  fieldName: string,
+) {
+  let dates: Dates[] = [];
 
-	getProp(object, fieldName)
+  getProp(object, fieldName);
 
-	function getProp(object: {[key: string | symbol]: any}, fieldName: string) {
-		for (let field in object) {
-			if (typeof object[field] === 'object' && Object.values(object[field]).length > 0) {
-				if (field === fieldName) {
-					console.log(object[field])
-					dates.push({...object[field]})
-				}
-				else {
-					getProp(object[field], fieldName);
-				}
-			}
-		}
-	}
-	console.log(dates)
-	return dates
+  function getProp(object: { [key: string | symbol]: any }, fieldName: string) {
+    for (let field in object) {
+      if (
+        typeof object[field] === "object" &&
+        Object.values(object[field]).length > 0
+      ) {
+        if (field === fieldName) {
+          console.log(object[field]);
+          dates.push({ ...object[field] });
+        } else {
+          getProp(object[field], fieldName);
+        }
+      }
+    }
+  }
+  console.log(dates);
+  return dates;
 }
 
-const prepare = (statData: StatisticsData) =>  {
-	return Object.entries(statData.data).map(
-		(item) => {
-			return {
-				id: item[1].id,
-				name: item[1].name,
-				count: getFieldValues(item[1], "dates").map(el => {
-					if (
-						(!statData.fromDate ||
-						  Number(Object.keys(el)[0]) >= statData.fromDate.getTime()) &&
-						(!statData.toDate || Number(Object.keys(el)[0]) <= statData.toDate.getTime())
-					  ) {
-						return Object.values(el)[0].total;
-					  } else {
-						return 0;
-					  }
-				}).reduce((p, c) => p + c, 0)
-			
-		}}
-	)
-}
+const prepare = (statData: StatisticsData) => {
+  return Object.entries(statData.data).map((item) => {
+    return {
+      id: item[1].id,
+      name: item[1].name,
+      count: getFieldValues(item[1], "dates")
+        .map((el) => {
+          if (
+            (!statData.fromDate ||
+              Number(Object.keys(el)[0]) >= statData.fromDate.getTime()) &&
+            (!statData.toDate ||
+              Number(Object.keys(el)[0]) <= statData.toDate.getTime())
+          ) {
+            return Object.values(el)[0].total;
+          } else {
+            return 0;
+          }
+        })
+        .reduce((p, c) => p + c, 0),
+    };
+  });
+};
 
 export const Statistics: FC = (props) => {
   const categories = useSelector(
-    (state: RootState) => state.settings.categories
+    (state: RootState) => state.settings.categories,
   );
   const [category, setCategory] = useState("");
   const [fromDate, setFromDate] = useState<null | Date>(null);
   const [toDate, setToDate] = useState<null | Date>(null);
 
- 
-
-	const statisticsData = category
-	  ? prepare({
-		  data: categories[category].subCategories,
-		  fromDate,
-		  toDate,
-		})
-	  : prepare({ data: categories, fromDate, toDate });
-
+  const statisticsData = category
+    ? prepare({
+        data: categories[category].subCategories,
+        fromDate,
+        toDate,
+      })
+    : prepare({ data: categories, fromDate, toDate });
 
   return (
     <div className="statistics">
@@ -115,10 +118,14 @@ export const Statistics: FC = (props) => {
       </div>
       <div className="statistics__info info">
         <div className="info__graphics">
-          { statisticsData ? <ChartComponent data={statisticsData}></ChartComponent> : '' }
+          {statisticsData ? (
+            <ChartComponent data={statisticsData}></ChartComponent>
+          ) : (
+            ""
+          )}
         </div>
         <div className="info__table">
-          { statisticsData ? <Table data={statisticsData}></Table> : '' }
+          {statisticsData ? <Table data={statisticsData}></Table> : ""}
         </div>
       </div>
     </div>

@@ -1,57 +1,56 @@
-*  {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .header {
-    background-color: #009999;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    height: 50px;
-    padding: 10px 10px;
-} 
+  background-color: #009999;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  height: 50px;
+  padding: 10px 10px;
+}
 
 main {
-    margin-top: 50px;
+  margin-top: 50px;
 }
 
 .container {
-    max-width: 1240px;
-    margin: 0 auto;
+  max-width: 1240px;
+  margin: 0 auto;
 }
 
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1240px;
-    margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1240px;
+  margin: 0 auto;
 }
 
 .nav__list {
-    list-style: none;
+  list-style: none;
 }
 
-.nav__list li  {
-    display: inline-block;
-    font-size: 1.2rem;
-    margin-left: 10px;
+.nav__list li {
+  display: inline-block;
+  font-size: 1.2rem;
+  margin-left: 10px;
 }
 
-.nav__list a  {
-    color: whitesmoke;
-    text-decoration: none;
+.nav__list a {
+  color: whitesmoke;
+  text-decoration: none;
 }
 
-
-.nav__list a:visited  {
-    color: whitesmoke;
+.nav__list a:visited {
+  color: whitesmoke;
 }
 
 .nav__list a:hover {
-    color: rgb(184, 167, 167);
+  color: rgb(184, 167, 167);
 }

@@ -42,7 +42,9 @@ export const App = () => {
               <ul className="nav__login nav__list">
                 <li>
                   {user ? (
-                    <a href='' onClick={logOut}>Logout</a>
+                    <a href="" onClick={logOut}>
+                      Logout
+                    </a>
                   ) : (
                     <a href="/login">Login</a>
                   )}
@@ -56,7 +58,11 @@ export const App = () => {
                 <Route exact path="/" component={Login}></Route>
                 <Route exact path="/register" component={Register}></Route>
                 <Route exact path="/dashboard" component={Dashboard}></Route>
-                <Route exact path="/categories" component={CategoriesComponent}></Route>
+                <Route
+                  exact
+                  path="/categories"
+                  component={CategoriesComponent}
+                ></Route>
               </Switch>
             </section>
           </main>

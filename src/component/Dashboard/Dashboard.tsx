@@ -26,7 +26,7 @@ export const Dashboard: FC = () => {
   const [date, setDate] = useState(getDateFormated());
 
   const categories = useSelector(
-    (state: RootState) => state.settings.categories
+    (state: RootState) => state.settings.categories,
   );
 
   const loading = useSelector((state: RootState) => state.settings.loading);
@@ -58,7 +58,7 @@ export const Dashboard: FC = () => {
               </button>
               {modalVisible && <Modal></Modal>}
             </div>
-            { categories ?  <Statistics></Statistics> : ''}
+            {categories ? <Statistics></Statistics> : ""}
           </div>
         </div>
       </div>
