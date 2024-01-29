@@ -26,3 +26,5 @@ export const Table: FC<TableProps> = (props: TableProps) => {
     </div>
   );
 };
+
+export default Table;

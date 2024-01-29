@@ -65,3 +65,5 @@ export const ChartComponent: FC<ChartProps> = (props: ChartProps) => {
 };
 
 let a = { mgkfhdmlhnh: { dates: { dkngdk: { total: 200 } } } };
+
+export default ChartComponent;

@@ -8,9 +8,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { fetchCategories } from "../../store/settingsReducer";
 
-import { Modal } from "../Modal/Modal";
 import { getDateFormated } from "../../modules/getDate";
-import { Statistics } from "../Statistics/Statistics";
+
+const Statistics = React.lazy(() => import("../Statistics/Statistics"));
+const Modal = React.lazy(() => import("../Modal/Modal"));
 
 const modalAddSubcategory = (innerHTML: string, classList: string[]) => {
   const modal = document.getElementById("modal");
@@ -79,3 +80,5 @@ export const Dashboard: FC = () => {
     </div>
   );
 };
+
+export default Dashboard;

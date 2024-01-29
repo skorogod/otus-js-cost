@@ -5,7 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 import "./Login.css";
 
-export function Login() {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, loading, error] = useAuthState(auth);

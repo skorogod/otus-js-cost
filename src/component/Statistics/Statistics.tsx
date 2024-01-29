@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 
 import DatePicker from "react-datepicker";
-import { ChartComponent } from "../Chart/Chart";
-import { Table } from "../Table/Table";
+const ChartComponent = React.lazy(() => import("../Chart/Chart"));
+const Table = React.lazy(() => import("../Table/Table"));
 import { Categories, CostDate } from "../../store/types";
 import type { Dates } from "../../store/types";
 
@@ -131,3 +131,5 @@ export const Statistics: FC = (props) => {
     </div>
   );
 };
+
+export default Statistics;

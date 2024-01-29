@@ -3,7 +3,8 @@ import ReactDOM from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import type { Category } from "../../store/types";
-import { CategoryComponent } from "../Category/Category";
+
+const CategoryComponent = React.lazy(() => import("../Category/Category"));
 import { updateCostsAction } from "../../store/dashboardReducer";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../../firebase/firebase";
@@ -92,3 +93,5 @@ export const Modal: FC = () => {
     </div>
   );
 };
+
+export default Modal;

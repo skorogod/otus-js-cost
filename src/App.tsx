@@ -5,14 +5,18 @@ import { Link } from "react-router-dom";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/firebase";
+import { Suspense } from "react";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import { Login } from "./component/Login/Login";
-import { Register } from "./component/Register/Register";
-import { Dashboard } from "./component/Dashboard/Dashboard";
+const Login = React.lazy(() => import("./component/Login/Login"));
+const Register = React.lazy(() => import("./component/Register/Register"));
+const Dashboard = React.lazy(() => import("./component/Dashboard/Dashboard"));
+const CategoriesComponent = React.lazy(
+  () => import("./component/Categories/Categories"),
+);
+
 import { logOut } from "../firebase/firebase";
-import { CategoriesComponent } from "./component/Categories/Categories";
 import { Provider } from "react-redux";
 import { store } from "./store";
 
@@ -55,14 +59,16 @@ export const App = () => {
           <main id="main" className="main">
             <section className="container">
               <Switch>
-                <Route exact path="/" component={Login}></Route>
-                <Route exact path="/register" component={Register}></Route>
-                <Route exact path="/dashboard" component={Dashboard}></Route>
-                <Route
-                  exact
-                  path="/categories"
-                  component={CategoriesComponent}
-                ></Route>
+                <Suspense fallback={<div>loading...</div>}>
+                  <Route exact path="/" component={Login}></Route>
+                  <Route exact path="/register" component={Register}></Route>
+                  <Route exact path="/dashboard" component={Dashboard}></Route>
+                  <Route
+                    exact
+                    path="/categories"
+                    component={CategoriesComponent}
+                  ></Route>
+                </Suspense>
               </Switch>
             </section>
           </main>

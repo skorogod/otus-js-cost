@@ -97,3 +97,5 @@ export const CategoriesComponent = () => {
     </div>
   );
 };
+
+export default CategoriesComponent;

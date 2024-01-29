@@ -16,9 +16,11 @@ describe("App component", () => {
     expect(App).toBeInstanceOf(Function);
   });
 
-  test("document contains login html", () => {
+  test("document contains login html", async () => {
     const container = render(<App></App>);
-    screen.getByPlaceholderText("E-mail Address");
+    await waitFor(() => {
+      screen.getByPlaceholderText("E-mail Address");
+    });
   });
 
   test("register test", async () => {
@@ -35,29 +37,34 @@ describe("App component", () => {
 
     expect(register).toBeTruthy();
 
-    await userEvent.type(screen.getByPlaceholderText("Name"), "vasya");
-    await userEvent.type(
-      screen.getByPlaceholderText("E-mail Address"),
-      "vasya@yahoo.com",
-    );
-    await userEvent.type(screen.getByPlaceholderText("Password"), "1234qwert");
-
-    try {
-      await userEvent.click(screen.getByRole("button"));
-
-      await waitFor(
-        () => {
-          console.log("AFTER REGISTER ", document.documentElement.innerHTML);
-        },
-        { timeout: 5000 },
+    await waitFor(async () => {
+      await userEvent.type(screen.getByPlaceholderText("Name"), "vasya");
+      await userEvent.type(
+        screen.getByPlaceholderText("E-mail Address"),
+        "vasya@yahoo.com",
       );
-    } catch (err) {
-      error = err;
-      expect(error).toBeTruthy();
-      await waitFor(() => {
-        console.log("AFTER REGISTER ", document.documentElement.innerHTML);
-      });
-    }
+      await userEvent.type(
+        screen.getByPlaceholderText("Password"),
+        "1234qwert",
+      );
+
+      try {
+        await userEvent.click(screen.getByRole("button"));
+
+        await waitFor(
+          () => {
+            console.log("AFTER REGISTER ", document.documentElement.innerHTML);
+          },
+          { timeout: 5000 },
+        );
+      } catch (err) {
+        error = err;
+        expect(error).toBeTruthy();
+        await waitFor(() => {
+          console.log("AFTER REGISTER ", document.documentElement.innerHTML);
+        });
+      }
+    });
   });
 });
 

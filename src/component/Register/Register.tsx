@@ -5,7 +5,7 @@ import { auth, registerWithEmailAndPassword } from "../../../firebase/firebase";
 import { useHistory } from "react-router-dom";
 import "./Register.css";
 
-export const Register = () => {
+const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -58,3 +58,5 @@ export const Register = () => {
     </div>
   );
 };
+
+export default Register;

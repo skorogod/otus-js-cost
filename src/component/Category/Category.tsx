@@ -63,3 +63,5 @@ export const CategoryComponent: FC<CategoryElProps> = (
     </div>
   );
 };
+
+export default CategoryComponent;

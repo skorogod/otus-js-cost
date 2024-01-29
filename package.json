@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage": "https://skorogod.github.io/otus-js-cost",
   "scripts": {
     "emulators:start": "firebase emulators:start --import ./firebase/exported",
     "test": "jest",
