@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import type { Category } from "../../store/types";
 
-const CategoryComponent = React.lazy(() => import("../Category/Category"));
+import CategoryComponent from "../Category/Category";
 import { updateCostsAction } from "../../store/dashboardReducer";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../../firebase/firebase";

@@ -11,7 +11,7 @@ import { fetchCategories } from "../../store/settingsReducer";
 import { getDateFormated } from "../../modules/getDate";
 
 const Statistics = React.lazy(() => import("../Statistics/Statistics"));
-const Modal = React.lazy(() => import("../Modal/Modal"));
+import Modal from "../Modal/Modal";
 
 const modalAddSubcategory = (innerHTML: string, classList: string[]) => {
   const modal = document.getElementById("modal");
@@ -48,17 +48,22 @@ export const Dashboard: FC = () => {
         <div className="dashboard__container">
           <div className="container__statistics">
             <h2 className="statistics__header">Стастистика расходов</h2>
-            <div className="statistics__add add">
-              <button
-                className="button btn-primary"
-                onClick={() => {
-                  setModalVisible(!modalVisible);
-                }}
-              >
-                Add Cost
-              </button>
-              {modalVisible && <Modal></Modal>}
-            </div>
+            {Object.values(categories) ? (
+              <div className="statistics__add add">
+                <button
+                  className="button btn-primary"
+                  onClick={() => {
+                    setModalVisible(!modalVisible);
+                  }}
+                >
+                  Add Cost
+                </button>
+                {modalVisible && <Modal></Modal>}
+              </div>
+            ) : (
+              ""
+            )}
+
             {Object.values(categories).length > 0 ? (
               <Statistics></Statistics>
             ) : (

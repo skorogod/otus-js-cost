@@ -55,6 +55,7 @@ export const CategoryComponent: FC<CategoryElProps> = (
       />
       <label htmlFor={`${props.id}`}>{props.name}</label>
       {props.visible &&
+        props.subCategories &&
         getSubCategorySelect(
           props.id,
           Object.values(props.subCategories),

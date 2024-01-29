@@ -46,12 +46,12 @@ export const settingsSlice = createAppSlice({
     addCategory: create.asyncThunk(
       async (params: insertCategoryParams, { dispatch }) => {
         try {
-          const subCategoryid = await insertCategory(
+          const сategoryid = await insertCategory(
             params.categoryName,
             params.userId,
           );
           return {
-            subCategoryid,
+            сategoryid,
             name: params.categoryName,
             subCategories: {},
           };
@@ -68,8 +68,8 @@ export const settingsSlice = createAppSlice({
         },
         fulfilled: (state, action) => {
           state.loading = false;
-          state.categories[action.payload!.subCategoryid] = {
-            id: action.payload!.subCategoryid,
+          state.categories[action.payload!.сategoryid] = {
+            id: action.payload!.сategoryid,
             name: action.payload!.name,
             dates: {},
             subCategories: action.payload!.subCategories,

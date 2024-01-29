@@ -27,3 +27,61 @@
   color: white;
   background-color: black;
 }
+
+.container__statistics {
+  position: relative;
+  width: 100%;
+  display: flex;
+  background-color: whitesmoke;
+  justify-content: space-between;
+  padding: 20px;
+  border-radius: 20px;
+  min-height: 500px;
+}
+
+.statistics__filter {
+  margin-top: 30px;
+  display: flex;
+  column-gap: 20px;
+  flex-wrap: nowrap;
+}
+
+.statistics {
+  margin-top: 50px;
+  flex-basis: 80%;
+  position: relative;
+}
+
+.statistics__header {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
+.statistics__info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.statistics__add {
+  position: relative;
+  order: -1;
+  z-index: 2;
+}
+
+.statistics__graphics {
+}
+
+.statistics__info {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.info__graphics {
+}
+
+.info__table {
+  order: -1;
+  flex-basis: 60%;
+}

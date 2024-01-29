@@ -17,12 +17,14 @@
   ],
   "emulators": {
     "auth": {
+      "host": "localhost",
       "port": 9099
     },
     "functions": {
       "port": 5001
     },
     "firestore": {
+      "host": "localhost",
       "port": 8080
     },
     "ui": {

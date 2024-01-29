@@ -19,6 +19,7 @@ const CategoriesComponent = React.lazy(
 import { logOut } from "../firebase/firebase";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import { HashRouter } from "react-router-dom";
 
 import "./App.css";
 
@@ -28,7 +29,7 @@ export const App = () => {
   return (
     <>
       <Provider store={store}>
-        <Router>
+        <HashRouter>
           <header className="header">
             <nav className="navbar">
               {user ? (
@@ -72,7 +73,7 @@ export const App = () => {
               </Switch>
             </section>
           </main>
-        </Router>
+        </HashRouter>
       </Provider>
     </>
   );
