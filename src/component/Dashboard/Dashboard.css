@@ -29,9 +29,9 @@
 }
 
 .container__statistics {
-  position: relative;
   width: 100%;
   display: flex;
+  position: relative;
   background-color: whitesmoke;
   justify-content: space-between;
   padding: 20px;
@@ -48,8 +48,17 @@
 
 .statistics {
   margin-top: 50px;
-  flex-basis: 80%;
+  width: 100%;
   position: relative;
+}
+
+.statistics__categories_empty {
+  align-self: center;
+  margin-top: -100px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 1.8rem;
 }
 
 .statistics__header {
@@ -62,10 +71,11 @@
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+  width: 100%;
 }
 
 .statistics__add {
-  position: relative;
+  position: absolute;
   order: -1;
   z-index: 2;
 }

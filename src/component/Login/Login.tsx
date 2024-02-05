@@ -41,7 +41,7 @@ export default function Login() {
         <button
           className="login__btn"
           role="button"
-          onClick={() => loginWithEmailAndPassword(email, password)}
+          onClick={async () => await loginWithEmailAndPassword(email, password)}
         >
           Login
         </button>

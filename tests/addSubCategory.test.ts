@@ -1,8 +1,8 @@
-import * as insertSubCategory from "../../firebase/methods/insertSubcategory";
-import { Category } from "../store/types";
-import { store } from "../store";
-import { addSubCategory } from "../store/settingsReducer";
-import { insertSubCategoryParams } from "../../firebase/methods/insertSubcategory";
+import * as insertSubCategory from "../firebase/methods/insertSubcategory";
+import { Category } from "../src/store/types";
+import { store } from "../src/store";
+import { addSubCategory } from "../src/store/settingsReducer";
+import { insertSubCategoryParams } from "../firebase/methods/insertSubcategory";
 
 describe("add category Action test", () => {
   test("add category action executes insert category", () => {

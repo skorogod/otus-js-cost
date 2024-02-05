@@ -12,9 +12,9 @@ const Register = () => {
   const [user, loading, error] = useAuthState(auth);
   const history = useHistory();
 
-  const register = () => {
+  const register = async () => {
     if (!name) alert("Please enter name");
-    registerWithEmailAndPassword(name, email, password);
+    await registerWithEmailAndPassword(name, email, password);
   };
 
   useEffect(() => {

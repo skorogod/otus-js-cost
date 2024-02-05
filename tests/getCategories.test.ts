@@ -1,8 +1,8 @@
 import { waitFor } from "@testing-library/react";
-import { store } from "../store";
-import { fetchCategories } from "../store/settingsReducer";
-import * as getCategories from "../../firebase/methods/getCategories";
-import { Category } from "../store/types";
+import { store } from "../src/store";
+import { fetchCategories } from "../src/store/settingsReducer";
+import * as getCategories from "../firebase/methods/getCategories";
+import { Category } from "../src/store/types";
 
 describe("getCategories", () => {
   const categories: { [category: string]: Category } = {

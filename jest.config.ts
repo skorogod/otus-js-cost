@@ -22,6 +22,7 @@ const config: Config = {
   collectCoverage: true,
   moduleNameMapper: {
     "\\.(css|scss)$": "identity-obj-proxy",
+    "\\.(jpg|jpeg|png)$": "identity-obj-proxy",
   },
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected

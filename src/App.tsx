@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 
-import { Link } from "react-router-dom";
+import { BrowserRouter, Link } from "react-router-dom";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/firebase";
@@ -16,10 +16,13 @@ const CategoriesComponent = React.lazy(
   () => import("./component/Categories/Categories"),
 );
 
+const NoMatch = React.lazy(() => import("./component/NoMatch/NoMatch"));
+
 import { logOut } from "../firebase/firebase";
 import { Provider } from "react-redux";
 import { store } from "./store";
 import { HashRouter } from "react-router-dom";
+// import { NoMatch } from "./component/NoMatch/NoMatch";
 
 import "./App.css";
 
@@ -29,7 +32,7 @@ export const App = () => {
   return (
     <>
       <Provider store={store}>
-        <HashRouter>
+        <BrowserRouter>
           <header className="header">
             <nav className="navbar">
               {user ? (
@@ -38,7 +41,9 @@ export const App = () => {
                     <Link to="/dashboard">Dashboard</Link>
                   </li>
                   <li>
-                    <Link to="/categories">Categories</Link>
+                    <Link className="categories-link" to="/categories">
+                      Categories
+                    </Link>
                   </li>
                 </ul>
               ) : (
@@ -59,8 +64,8 @@ export const App = () => {
           </header>
           <main id="main" className="main">
             <section className="container">
-              <Switch>
-                <Suspense fallback={<div>loading...</div>}>
+              <Suspense fallback={<div>loading...</div>}>
+                <Switch>
                   <Route exact path="/" component={Login}></Route>
                   <Route exact path="/register" component={Register}></Route>
                   <Route exact path="/dashboard" component={Dashboard}></Route>
@@ -69,11 +74,14 @@ export const App = () => {
                     path="/categories"
                     component={CategoriesComponent}
                   ></Route>
-                </Suspense>
-              </Switch>
+                  <Route path="/*">
+                    <NoMatch />
+                  </Route>
+                </Switch>
+              </Suspense>
             </section>
           </main>
-        </HashRouter>
+        </BrowserRouter>
       </Provider>
     </>
   );

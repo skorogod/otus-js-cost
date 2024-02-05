@@ -21,7 +21,9 @@ export const dashboardSlice = createAppSlice({
           await updateCosts(params);
           dispatch(fetchCategories(params.userId));
         } catch (err) {
-          alert(err);
+          if (err instanceof Error) {
+            throw new Error(err.message);
+          }
         }
       },
       {

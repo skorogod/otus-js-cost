@@ -23,12 +23,13 @@ export const settingsSlice = createAppSlice({
             categories: categories,
           };
         } catch (err) {
-          alert(err);
+          if (err instanceof Error) {
+            console.log(err.message);
+          }
+          return {
+            categories: {},
+          };
         }
-
-        return {
-          categories: {},
-        };
       },
       {
         pending: (state) => {
@@ -46,14 +47,14 @@ export const settingsSlice = createAppSlice({
     addCategory: create.asyncThunk(
       async (params: insertCategoryParams, { dispatch }) => {
         try {
-          const сategoryid = await insertCategory(
+          const categoryid = await insertCategory(
             params.categoryName,
             params.userId,
           );
+          console.log(categoryid);
           return {
-            сategoryid,
+            categoryid,
             name: params.categoryName,
-            subCategories: {},
           };
         } catch (err) {
           alert(err);
@@ -68,11 +69,11 @@ export const settingsSlice = createAppSlice({
         },
         fulfilled: (state, action) => {
           state.loading = false;
-          state.categories[action.payload!.сategoryid] = {
-            id: action.payload!.сategoryid,
+          state.categories[action.payload!.categoryid] = {
+            id: action.payload!.categoryid,
             name: action.payload!.name,
+            subCategories: {},
             dates: {},
-            subCategories: action.payload!.subCategories,
           };
         },
       },
@@ -81,6 +82,8 @@ export const settingsSlice = createAppSlice({
       async (params: insertSubCategoryParams) => {
         try {
           const id = await insertSubcategory(params);
+          console.log(params);
+          console.log(id);
           return {
             id,
             name: params.subCategoryName,

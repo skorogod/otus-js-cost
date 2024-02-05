@@ -15,8 +15,6 @@ import { Category, SubCategory, CostDate } from "../../src/store/types";
 export const getCategories = async (userId: string) => {
   const user = await getUser(userId);
 
-  console.log("USER ", user);
-
   if (user) {
     const categoriesDocs = await getDocs(
       query(collection(db, "users", `${user.id}`, "categories")),
@@ -38,7 +36,7 @@ export const getCategories = async (userId: string) => {
         ),
       );
 
-      if (subCategories) {
+      if (subCategories.docs.length) {
         for (let subCat of subCategories.docs) {
           if (!categories[category].subCategories) {
             categories[category].subCategories = {};
@@ -49,9 +47,11 @@ export const getCategories = async (userId: string) => {
             ...subCat.data(),
           } as SubCategory;
         }
+      } else {
+        categories[category].subCategories = {};
       }
     }
-    console.log("Categories ", categories);
+
     return categories;
   } else {
     throw new Error("get Categories Error");

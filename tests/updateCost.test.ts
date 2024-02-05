@@ -1,5 +1,5 @@
 import { mockFirebase } from "firestore-jest-mock";
-import { db } from "../../firebase/firebase";
+import { db } from "../firebase/firebase";
 import { collection, getDocs, query } from "firebase/firestore";
 import { waitFor } from "@testing-library/react";
 import {
@@ -7,10 +7,10 @@ import {
   mockUpdate,
 } from "firestore-jest-mock/mocks/firestore";
 import { connectFirestoreEmulator } from "firebase/firestore";
-import { store } from "../store";
-import { updateCostsAction } from "../store/dashboardReducer";
-import * as updateCosts from "../../firebase/methods/updateCost";
-import { updateCostsParams } from "../../firebase/methods/updateCost";
+import { store } from "../src/store";
+import { updateCostsAction } from "../src/store/dashboardReducer";
+import * as updateCosts from "../firebase/methods/updateCost";
+import { updateCostsParams } from "../firebase/methods/updateCost";
 
 mockFirebase({
   database: {

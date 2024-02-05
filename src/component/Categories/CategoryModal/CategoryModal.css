@@ -9,7 +9,6 @@
 }
 
 .modal {
-  margin-top: -150px;
   color: whitesmoke;
   position: absolute;
   display: flex;
@@ -18,8 +17,8 @@
   top: 30%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgba(63, 106, 179, 0.993);
-  padding: 20px;
+  background-color: rgba(63, 106, 179, 0.842);
+  padding: 30px;
   border-radius: 10px;
   width: 400px;
   box-shadow: 5px 5px 10px rgba(52, 56, 63, 0.993);
@@ -46,12 +45,10 @@
 
 .fieldset {
   display: flex;
-  width: 100%;
   flex-flow: column;
-  row-gap: 1.5rem;
+  row-gap: 1.6rem;
   border: none;
-  max-width: 80%;
-  margin: 0 auto;
+  width: 100%;
 }
 
 .fieldset__legend {
@@ -61,39 +58,14 @@
   font-weight: 600;
 }
 
-.fieldset__categories_empty {
+.fieldset__body {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  row-gap: 1rem;
   margin-top: 1rem;
-  text-align: center;
-  line-height: 1.5rem;
-}
-
-.date {
-  margin-top: 10px;
-  display: flex;
-  flex-flow: column nowrap;
-  row-gap: 1rem;
-}
-
-.categories-radio {
-  display: flex;
-  flex-flow: column nowrap;
-  row-gap: 1rem;
-}
-
-.link {
-  text-decoration: underline;
-  color: inherit;
-}
-
-.link:visited {
-  color: inherit;
-}
-
-.link:hover {
-  color: rgb(176, 180, 185);
 }
 
 .modal .input {
   padding: 12px 5px;
-  width: 100%;
 }

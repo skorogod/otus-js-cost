@@ -1,4 +1,5 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import ReactDOM from "react-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
@@ -8,6 +9,7 @@ const ChartComponent = React.lazy(() => import("../Chart/Chart"));
 const Table = React.lazy(() => import("../Table/Table"));
 import { Categories, CostDate } from "../../store/types";
 import type { Dates } from "../../store/types";
+import { getCategoryByName } from "../../../firebase/methods/getCategoryByName";
 
 import "./Statistics.css";
 
@@ -71,6 +73,7 @@ export const Statistics: FC = (props) => {
   const categories = useSelector(
     (state: RootState) => state.settings.categories,
   );
+
   const [category, setCategory] = useState("");
   const [fromDate, setFromDate] = useState<null | Date>(null);
   const [toDate, setToDate] = useState<null | Date>(null);
@@ -83,25 +86,59 @@ export const Statistics: FC = (props) => {
       })
     : prepare({ data: categories, fromDate, toDate });
 
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+
+    const queryCategory = queryParams.get("category");
+    let categoryId: string | undefined | null;
+
+    if (typeof queryCategory === "string") {
+      categoryId = getCategoryByName(queryCategory, categories);
+      console.log("id ", categoryId);
+      if (categoryId) setCategory(categoryId);
+    }
+  });
+
   return (
     <div className="statistics">
       <div className="statistics__filter filter">
         <div className="filter__category">
           <select
+            value={category}
+            className="input"
             name="category-select"
             id="category-selectr"
             onChange={(event) => {
               setCategory(event.target.value);
+              const url = new URL(location.toString());
+
+              if (event.target.value) {
+                url.searchParams.set(
+                  "category",
+                  document.getElementById(`opt-${event.target.value}`)
+                    ?.innerText as string,
+                );
+              } else {
+                url.searchParams.delete("category");
+              }
+              history.pushState({}, "", url);
             }}
           >
-            <option value="">All Categories</option>
+            <option key="" value="">
+              All Categories
+            </option>
             {Object.values(categories).map((el) => {
-              return <option value={el.id}>{el.name}</option>;
+              return (
+                <option key={el.id} value={el.id} id={`opt-${el.id}`}>
+                  {el.name}
+                </option>
+              );
             })}
           </select>
         </div>
         <div className="filter__date">
           <DatePicker
+            className="input"
             dateFormat="dd-MM-yyyy"
             selected={fromDate}
             onChange={(dates: any) => {
@@ -118,14 +155,14 @@ export const Statistics: FC = (props) => {
       </div>
       <div className="statistics__info info">
         <div className="info__graphics">
-          {statisticsData ? (
+          {statisticsData.length ? (
             <ChartComponent data={statisticsData}></ChartComponent>
           ) : (
             ""
           )}
         </div>
         <div className="info__table">
-          {statisticsData ? <Table data={statisticsData}></Table> : ""}
+          {statisticsData.length ? <Table data={statisticsData}></Table> : ""}
         </div>
       </div>
     </div>

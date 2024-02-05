@@ -10,7 +10,7 @@
   width: 100%;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 10;
   height: 50px;
   padding: 10px 10px;
 }
@@ -53,4 +53,22 @@ main {
 
 .nav__list a:hover {
   color: rgb(184, 167, 167);
+}
+
+.btn-primary {
+  color: whitesmoke;
+  background-color: #009999;
+  padding: 10px 8px;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.btn-primary:hover {
+  background-color: #157575;
+}
+
+.input {
+  padding: 5px;
+  border-radius: 10px;
+  border: 1px solid black;
 }

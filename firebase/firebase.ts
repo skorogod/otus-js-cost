@@ -13,7 +13,7 @@ export const firebaseConfig = {
 };
 
 import { initializeApp } from "firebase/app";
-import { connectFirestoreEmulator } from "firebase/firestore";
+import { connectFirestoreEmulator, getDocs, query } from "firebase/firestore";
 import { firestore } from "firebase-admin";
 
 import {
@@ -24,17 +24,11 @@ import {
   connectAuthEmulator,
 } from "firebase/auth";
 
-import {
-  getFirestore,
-  addDoc,
-  collection,
-  initializeFirestore,
-} from "firebase/firestore";
+import { getFirestore, addDoc, collection } from "firebase/firestore";
 
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-// const db = initializeFirestore(app, {experimentalForceLongPolling: true})
-const db = getFirestore(app);
+let db = getFirestore(app);
 
 if (location.hostname === "127.0.0.1" || location.hostname === "localhost") {
   connectFirestoreEmulator(db, "127.0.0.1", 8080);
@@ -42,8 +36,6 @@ if (location.hostname === "127.0.0.1" || location.hostname === "localhost") {
 }
 
 const loginWithEmailAndPassword = async (email: string, password: string) => {
-  console.log("EMAIL11 ", email);
-  console.log("PASSWORD11 ", password);
   try {
     const user = await signInWithEmailAndPassword(auth, email, password);
     return user;
@@ -60,18 +52,18 @@ const registerWithEmailAndPassword = async (
   password: string,
 ) => {
   try {
+    const users = await getDocs(query(collection(db, "users")));
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
-    console.log("UESER ", user.uid);
 
-    await addDoc(collection(db, "users"), {
+    const newDoc = await addDoc(collection(db, "users"), {
       uuid: user.uid,
       name,
       authProvider: "local",
       email,
     });
 
-    return user;
+    return newDoc;
   } catch (err) {
     if (err instanceof Error) {
       throw new Error(err.message);
@@ -79,8 +71,8 @@ const registerWithEmailAndPassword = async (
   }
 };
 
-const logOut = () => {
-  signOut(auth);
+const logOut = async () => {
+  await signOut(auth);
 };
 
 export {

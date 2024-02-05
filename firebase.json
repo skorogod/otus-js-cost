@@ -16,15 +16,16 @@
     }
   ],
   "emulators": {
+    "rules": "./firestore.rules",
     "auth": {
-      "host": "localhost",
+      "host": "127.0.0.1",
       "port": 9099
     },
     "functions": {
       "port": 5001
     },
     "firestore": {
-      "host": "localhost",
+      "host": "127.0.0.1",
       "port": 8080
     },
     "ui": {

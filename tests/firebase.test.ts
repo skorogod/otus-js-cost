@@ -1,7 +1,7 @@
-import { registerWithEmailAndPassword } from "../../firebase/firebase";
+import { registerWithEmailAndPassword } from "../firebase/firebase";
 import { waitFor } from "@testing-library/react";
 
-import { loginWithEmailAndPassword } from "../../firebase/firebase";
+import { loginWithEmailAndPassword } from "../firebase/firebase";
 require("isomorphic-fetch");
 
 describe("test Login with Email and password", () => {
@@ -36,11 +36,11 @@ describe("test Login with Email and password", () => {
 });
 
 describe("register with Email and password test", () => {
-  test("bad", async () => {
+  test("register with wrong credentials", async () => {
     let error = "";
     let user: any;
     try {
-      user = await registerWithEmailAndPassword("vasya", "vasya", "228");
+      user = await registerWithEmailAndPassword("PETYA", "PETYA", "228");
     } catch (err) {
       if (err instanceof Error) {
         error = err.message;

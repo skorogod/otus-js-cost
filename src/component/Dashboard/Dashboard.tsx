@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import { auth, db, logOut } from "../../../firebase/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 
 import "./Dashboard.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,8 +10,11 @@ import { fetchCategories } from "../../store/settingsReducer";
 
 import { getDateFormated } from "../../modules/getDate";
 
+import { Link } from "react-router-dom";
+
 const Statistics = React.lazy(() => import("../Statistics/Statistics"));
 import Modal from "../Modal/Modal";
+import { getCategoryByName } from "../../../firebase/methods/getCategoryByName";
 
 const modalAddSubcategory = (innerHTML: string, classList: string[]) => {
   const modal = document.getElementById("modal");
@@ -47,18 +50,17 @@ export const Dashboard: FC = () => {
       <div className="dashboard__container">
         <div className="dashboard__container">
           <div className="container__statistics">
-            <h2 className="statistics__header">Стастистика расходов</h2>
+            <h2 className="statistics__header">Cost statistics</h2>
             {Object.values(categories) ? (
               <div className="statistics__add add">
                 <button
-                  className="button btn-primary"
+                  className="button btn-primary add-cost-btn"
                   onClick={() => {
                     setModalVisible(!modalVisible);
                   }}
                 >
                   Add Cost
                 </button>
-                {modalVisible && <Modal></Modal>}
               </div>
             ) : (
               ""
@@ -67,21 +69,25 @@ export const Dashboard: FC = () => {
             {Object.values(categories).length > 0 ? (
               <Statistics></Statistics>
             ) : (
-              <p
-                style={{
-                  alignSelf: "center",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                }}
-              >
+              <p className="statistics__categories_empty">
                 {" "}
-                "В настоящее время список категорий пуст. Категории можно
-                добавить во вкладке Categories"
+                Categories list is empty now.<br></br>Click{" "}
+                <Link className="link" to="/categories">
+                  Categories
+                </Link>{" "}
+                for categories adding
               </p>
             )}
           </div>
         </div>
       </div>
+      {modalVisible && (
+        <Modal
+          onCloseClick={() => {
+            setModalVisible(false);
+          }}
+        ></Modal>
+      )}
     </div>
   );
 };

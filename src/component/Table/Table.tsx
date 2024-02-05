@@ -15,12 +15,16 @@ export const Table: FC<TableProps> = (props: TableProps) => {
     <div className="table">
       <div className="table-header">
         {props.data.map((el) => (
-          <p className="table__item">{el.name}</p>
+          <p key={el.id} className="table__item">
+            {el.name}
+          </p>
         ))}
       </div>
       <div className="table-content">
         {props.data.map((el) => (
-          <p className="table__item">{el.count}</p>
+          <p key={el.id} className="table__item">
+            {el.count}
+          </p>
         ))}
       </div>
     </div>

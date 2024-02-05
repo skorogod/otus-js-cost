@@ -6,6 +6,5 @@ export const getUser = async (userId: string) => {
   let resp = await getDocs(
     query(collection(db, "users"), where("uuid", "==", userId)),
   );
-  console.log(resp.docs);
   return resp.docs[0];
 };
