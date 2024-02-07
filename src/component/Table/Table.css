@@ -1,0 +1,32 @@
+.table {
+  display: grid;
+
+  grid-template-areas:
+    "header"
+    "content";
+  border: 5px solid #52a2e4;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.table-header {
+  grid-area: header;
+  background-color: #3e628042;
+}
+
+.table-content {
+  grid-area: content;
+}
+
+.table-header,
+.table-content {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  justify-content: center;
+}
+
+.table__item {
+  padding: 10px;
+  border: 1px solid #283c4de3;
+}

@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+firebase emulators:exec  --import ./firebase/exported --only firestore,auth "npm test"

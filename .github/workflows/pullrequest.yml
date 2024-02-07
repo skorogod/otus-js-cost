@@ -1,0 +1,24 @@
+name: PullRequest
+
+on:
+  pull_request:
+    # this action will be triggered each time a PR was made against branch master.
+    # this workflow will only be triggered when a PR is created. Following pushes do not trigger this workflow again.
+    types: [opened]
+
+jobs:
+  build:
+    # name of the job, you can rename this as needed
+    name: Crafting Preview Link
+    runs-on: [ubuntu-latest]
+    permissions: write-all
+    env:
+      # This tells the action to use the token so that it can post a comment to PR.
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: generate-preview-url # name of this step, you can rename this as needed
+        uses: mshick/add-pr-comment@v1 # update the version as needed
+        with:
+          # required inputs for sandbox-launch-action to specify the target template.
+          message: You can check this code at sandbox using this link
+            https://githubbox.com/${{github.repository}}/tree/${{github.head_ref}}

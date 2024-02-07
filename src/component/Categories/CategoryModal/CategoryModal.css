@@ -1,0 +1,71 @@
+.overlay {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(31, 42, 61, 0.5);
+}
+
+.modal {
+  color: whitesmoke;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(63, 106, 179, 0.842);
+  padding: 30px;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 5px 5px 10px rgba(52, 56, 63, 0.993);
+}
+
+.modal__close {
+  position: relative;
+  width: 100%;
+}
+
+.close__btn {
+  position: absolute;
+  right: 8px;
+  top: 10px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.close__icon {
+  width: 25px;
+  object-fit: contain;
+}
+
+.fieldset {
+  display: flex;
+  flex-flow: column;
+  row-gap: 1.6rem;
+  border: none;
+  width: 100%;
+}
+
+.fieldset__legend {
+  width: 100%;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.fieldset__body {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  row-gap: 1rem;
+  margin-top: 1rem;
+}
+
+.modal .input {
+  padding: 12px 5px;
+}

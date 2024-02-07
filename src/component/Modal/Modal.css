@@ -1,0 +1,99 @@
+.overlay {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(31, 42, 61, 0.5);
+}
+
+.modal {
+  margin-top: -150px;
+  color: whitesmoke;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(63, 106, 179, 0.993);
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 5px 5px 10px rgba(52, 56, 63, 0.993);
+}
+
+.modal__close {
+  position: relative;
+  width: 100%;
+}
+
+.close__btn {
+  position: absolute;
+  right: 8px;
+  top: 10px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.close__icon {
+  width: 25px;
+  object-fit: contain;
+}
+
+.fieldset {
+  display: flex;
+  width: 100%;
+  flex-flow: column;
+  row-gap: 1.5rem;
+  border: none;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.fieldset__legend {
+  width: 100%;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.fieldset__categories_empty {
+  margin-top: 1rem;
+  text-align: center;
+  line-height: 1.5rem;
+}
+
+.date {
+  margin-top: 10px;
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 1rem;
+}
+
+.categories-radio {
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 1rem;
+}
+
+.link {
+  text-decoration: underline;
+  color: inherit;
+}
+
+.link:visited {
+  color: inherit;
+}
+
+.link:hover {
+  color: rgb(176, 180, 185);
+}
+
+.modal .input {
+  padding: 12px 5px;
+  width: 100%;
+}

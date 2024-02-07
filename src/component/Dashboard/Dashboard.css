@@ -1,0 +1,97 @@
+.dashboard {
+  display: flex;
+  flex-flow: column;
+}
+
+.dashboard__container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.dashboard__date {
+  align-self: flex-end;
+}
+
+.dashboard__statistics {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.dashboard__btn {
+  padding: 10px;
+  font-size: 18px;
+  margin-top: 10px;
+  border: none;
+  color: white;
+  background-color: black;
+}
+
+.container__statistics {
+  width: 100%;
+  display: flex;
+  position: relative;
+  background-color: whitesmoke;
+  justify-content: space-between;
+  padding: 20px;
+  border-radius: 20px;
+  min-height: 500px;
+}
+
+.statistics__filter {
+  margin-top: 30px;
+  display: flex;
+  column-gap: 20px;
+  flex-wrap: nowrap;
+}
+
+.statistics {
+  margin-top: 50px;
+  width: 100%;
+  position: relative;
+}
+
+.statistics__categories_empty {
+  align-self: center;
+  margin-top: -100px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.statistics__header {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
+.statistics__info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.statistics__add {
+  position: absolute;
+  order: -1;
+  z-index: 2;
+}
+
+.statistics__graphics {
+}
+
+.statistics__info {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.info__graphics {
+}
+
+.info__table {
+  order: -1;
+  flex-basis: 60%;
+}
