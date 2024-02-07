@@ -32,7 +32,7 @@ export const App = () => {
   return (
     <>
       <Provider store={store}>
-        <BrowserRouter>
+        <HashRouter>
           <header className="header">
             <nav className="navbar">
               {user ? (
@@ -81,7 +81,7 @@ export const App = () => {
               </Suspense>
             </section>
           </main>
-        </BrowserRouter>
+        </HashRouter>
       </Provider>
     </>
   );
