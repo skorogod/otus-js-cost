@@ -32,7 +32,7 @@ export const App = () => {
   return (
     <>
       <Provider store={store}>
-        <BrowserRouter basename={"/"}>
+        <BrowserRouter basename={"/otus-js-cost"}>
           <header className="header">
             <nav className="navbar">
               {user ? (
