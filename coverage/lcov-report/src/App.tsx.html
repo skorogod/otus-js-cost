@@ -269,7 +269,7 @@ export const App = () =&gt; {
   return (
     &lt;&gt;
       &lt;Provider store={store}&gt;
-        &lt;BrowserRouter&gt;
+        &lt;HashRouter&gt;
           &lt;header className="header"&gt;
             &lt;nav className="navbar"&gt;
               {user ? (
@@ -305,7 +305,7 @@ export const App = () =&gt; {
                 &lt;Switch&gt;
                   &lt;Route exact path="/" component={Login}&gt;&lt;/Route&gt;
                   &lt;Route exact path="/register" component={Register}&gt;&lt;/Route&gt;
-                  &lt;Route exact path="/dashboard" component={Dashboard}&gt;&lt;/Route&gt;
+                  &lt;Route path="/dashboard" component={Dashboard}&gt;&lt;/Route&gt;
                   &lt;Route
                     exact
                     path="/categories"
@@ -318,7 +318,7 @@ export const App = () =&gt; {
               &lt;/Suspense&gt;
             &lt;/section&gt;
           &lt;/main&gt;
-        &lt;/BrowserRouter&gt;
+        &lt;/HashRouter&gt;
       &lt;/Provider&gt;
     &lt;/&gt;
   );
@@ -337,7 +337,7 @@ export const App = () =&gt; {
         rel="noopener noreferrer"
         >istanbul</a
       >
-      at 2024-02-07T12:54:24.916Z
+      at 2024-02-07T16:26:16.178Z
     </div>
     <script src="../prettify.js"></script>
     <script>

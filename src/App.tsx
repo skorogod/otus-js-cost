@@ -32,7 +32,7 @@ export const App = () => {
   return (
     <>
       <Provider store={store}>
-        <BrowserRouter>
+        <HashRouter>
           <header className="header">
             <nav className="navbar">
               {user ? (
@@ -68,7 +68,7 @@ export const App = () => {
                 <Switch>
                   <Route exact path="/" component={Login}></Route>
                   <Route exact path="/register" component={Register}></Route>
-                  <Route exact path="/dashboard" component={Dashboard}></Route>
+                  <Route path="/dashboard" component={Dashboard}></Route>
                   <Route
                     exact
                     path="/categories"
@@ -81,7 +81,7 @@ export const App = () => {
               </Suspense>
             </section>
           </main>
-        </BrowserRouter>
+        </HashRouter>
       </Provider>
     </>
   );
