@@ -2365,12 +2365,12 @@
         "type": "branch",
         "line": 49,
         "loc": {
-          "start": { "line": 49, "column": -2 },
+          "start": { "line": 49, "column": -1 },
           "end": { "line": 50, "column": 18 }
         },
         "locations": [
           {
-            "start": { "line": 49, "column": -2 },
+            "start": { "line": 49, "column": -1 },
             "end": { "line": 50, "column": 18 }
           }
         ]
@@ -2393,12 +2393,12 @@
         "type": "branch",
         "line": 58,
         "loc": {
-          "start": { "line": 58, "column": -2 },
+          "start": { "line": 58, "column": -1 },
           "end": { "line": 59, "column": 46 }
         },
         "locations": [
           {
-            "start": { "line": 58, "column": -2 },
+            "start": { "line": 58, "column": -1 },
             "end": { "line": 59, "column": 46 }
           }
         ]
