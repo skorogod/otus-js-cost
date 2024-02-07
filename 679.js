@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkotus_js_basic_cost=self.webpackChunkotus_js_basic_cost||[]).push([[679],{1679:(s,c,t)=>{t.r(c),t.d(c,{NoMatch:()=>h,default:()=>a});var e=t(6550),o=t(5893);const h=()=>{const s=(0,e.TH)();return console.log("NO MAtch"),(0,o.jsx)("div",{children:(0,o.jsxs)("h3",{children:["No match for ",(0,o.jsx)("code",{children:s.pathname})]})})},a=h}}]);
