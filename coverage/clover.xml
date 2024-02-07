@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1707321868533" clover="3.2.0">
-  <project timestamp="1707321868533" name="All files">
+<coverage generated="1707322124242" clover="3.2.0">
+  <project timestamp="1707322124243" name="All files">
     <metrics statements="1476" coveredstatements="1139" conditionals="132" coveredconditionals="101" methods="73" coveredmethods="43" elements="1681" coveredelements="1283" complexity="0" loc="1476" ncloc="1476" packages="16" files="23" classes="23"/>
     <package name="firebase">
       <metrics statements="84" coveredstatements="80" conditionals="5" coveredconditionals="4" methods="3" coveredmethods="2"/>

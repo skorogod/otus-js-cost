@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "type": "commonjs",
-  "homepage": "https://skorogod.github.io/otus-js-cost",
   "scripts": {
     "emulators:start": "firebase emulators:start --import ./firebase/exported",
     "test": "jest --detectOpenHandles",
