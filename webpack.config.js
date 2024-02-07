@@ -8,7 +8,7 @@ module.exports = {
   entry: "./src/index.tsx",
   output: {
     path: path.resolve(__dirname, "dist"),
-    publicPath: "/otus-js-cost"
+    publicPath: "/",
   },
 
   devServer: {
@@ -18,7 +18,6 @@ module.exports = {
     hot: true,
     historyApiFallback: true,
   },
-
 
   plugins: [
     new HtmlWebpackPlugin({
