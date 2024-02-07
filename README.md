@@ -1,6 +1,6 @@
 # OTUS-JS-BASIC-COST [![codecov](https://codecov.io/gh/skorogod/otus-js-cost/graph/badge.svg?token=LG7M4FD2N0)](https://codecov.io/gh/skorogod/otus-js-cost)
 
-В данном репозитории представлена реализация проекта **"Приложение для учета раcходов"**, выполненная в рамках курса JS-Basic платформы онлайн-образования "Otus".
+В данном репозитории представлена реализация проекта **"Приложение для учета раcходов"**, выполненная в рамках курса JavaScript Developer Basic платформы онлайн-образования "Otus".
 
 Ссылка на страницу приложения: https://skorogod.github.io/otus-js-cost
 
